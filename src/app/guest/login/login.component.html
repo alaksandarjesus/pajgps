@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center align-items-center vh-screen">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+        <mat-card appearance="outlined" class="w-100  bg-white">
+          <mat-card-header>
+            <mat-card-title> Login</mat-card-title>
+            <mat-card-subtitle>Welcome Back</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="my-3">
+            <form [formGroup]="loginForm" (submit)="onSubmit($event)">
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" autocomplete="email" />
+                @if (loginForm.get('email')?.hasError('required')) {
+                <mat-error>Email is required</mat-error>
+                }
+                @if (loginForm.get('email')?.hasError('minlength')) {
+                <mat-error>Min 3 characters required</mat-error>
+                }
+                @if (loginForm.get('email')?.hasError('maxlength')) {
+                <mat-error>Max 20 characters required</mat-error>
+                }
+                @if (loginForm.get('email')?.hasError('pattern')) {
+                <mat-error>Invalid Email</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="password" autocomplete="current-password" />
+                @if (loginForm.get('password')?.hasError('required')) {
+                <mat-error>Password is required</mat-error>
+                }
+                @if (loginForm.get('password')?.hasError('minlength')) {
+                <mat-error>Min 5 characters required</mat-error>
+                }
+                @if (loginForm.get('password')?.hasError('maxlength')) {
+                <mat-error>Max 20 characters required</mat-error>
+                }
+              </mat-form-field>
+
+              <div class="d-flex justify-content-end align-items-center">
+                <button mat-flat-button color="primary" [disabled]="submitted">Submit</button>
+              </div>
+
+            </form>
+          </mat-card-content>
+
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>
